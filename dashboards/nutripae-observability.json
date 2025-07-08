@@ -919,7 +919,7 @@
                         "type": "loki",
                         "uid": "loki"
                     },
-                    "expr": "sum by(type) (rate({compose_service=~\"pae-.*\"} | pattern `<date>,<time> <type> [<logger>] [<file>] [trace_id=<trace_id> span_id=<span_id> resource.service.name=<service_name> trace_sampled=<sampled>] - <msg>` | type != \"\" |= \"$log_keyword\" [1m]))",
+                    "expr": "sum by(type) (rate({compose_service=~\"nutripae-.*\"} | pattern `<date>,<time> <type> [<logger>] [<file>] [trace_id=<trace_id> span_id=<span_id> resource.service.name=<service_name> trace_sampled=<sampled>] - <msg>` | type != \"\" |= \"$log_keyword\" [1m]))",
                     "legendFormat": "{{type}}",
                     "refId": "A"
                 }
@@ -956,7 +956,7 @@
                         "type": "loki",
                         "uid": "loki"
                     },
-                    "expr": "{compose_service=~\"pae-.*\"}",
+                    "expr": "{compose_service=~\"nutripae-.*\"}",
                     "hide": false,
                     "refId": "A"
                 }

@@ -27,26 +27,26 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:9090"]
 
-  - job_name: 'pae-auth'
+  - job_name: 'nutripae-auth'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['pae-auth-api:8000']
+      - targets: ['nutripae-auth-api:8000']
 
-  - job_name: 'pae-cobertura'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
-    scrape_interval: 5s
-
-    static_configs:
-      - targets: ['pae-cobertura-api:8000']
-
-  - job_name: 'pae-rh-api'
+  - job_name: 'nutripae-cobertura'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['pae-rh-api:8000']
+      - targets: ['nutripae-cobertura-api:8000']
+
+  - job_name: 'nutripae-rh-api'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['nutripae-rh-api:8000']
