@@ -1,17 +1,21 @@
+// Configuración de Alloy para recolectar logs de contenedores
 logging {
   level  = "info"
   format = "logfmt"
 }
 
+// Descubrimiento de archivos de log
 local.file_match "container_logs" {
   path_targets = [{"__path__" = "/var/log/containers/*.log"}]
 }
 
+// Extracción de labels desde el nombre del archivo
 loki.source.file "container_logs" {
   targets    = local.file_match.container_logs.targets
   forward_to = [loki.process.container_logs.receiver]
 }
 
+// Procesamiento de logs para extraer metadatos
 loki.process "container_logs" {
   forward_to = [loki.write.loki.receiver]
 
@@ -22,12 +26,13 @@ loki.process "container_logs" {
 
   stage.labels {
     values = {
-      compose_service = "",
+      compose_service = null,
       job = "docker-logs",
     }
   }
 }
 
+// Envío de logs a Loki
 loki.write "loki" {
   endpoint {
     url = "http://loki:3100/loki/api/v1/push"
